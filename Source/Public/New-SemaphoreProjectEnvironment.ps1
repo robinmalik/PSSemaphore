@@ -1,5 +1,27 @@
 function New-SemaphoreProjectEnvironment
 {
+	<#
+		.SYNOPSIS
+			Creates a new environment for the given project.
+
+		.DESCRIPTION
+			This function creates a new environment for the given project.
+
+		.PARAMETER ProjectId
+			The ID of the project to create the environment for.
+
+		.PARAMETER Name
+			The name of the environment to create.
+
+		.EXAMPLE
+			New-SemaphoreProjectEnvironment -ProjectId 2 -Name "Production"
+
+			Creates a new environment with the name "Production" for the project with ID 2.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)]

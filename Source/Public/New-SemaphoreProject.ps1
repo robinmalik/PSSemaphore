@@ -1,5 +1,38 @@
 function New-SemaphoreProject
 {
+	<#
+		.SYNOPSIS
+			Creates a new project.
+
+		.DESCRIPTION
+			Creates a new project.
+
+		.PARAMETER Name
+			The name of the project to create.
+
+		.PARAMETER Alert
+			(Optional) Whether to send alerts for this project.
+
+		.PARAMETER TelegramChatId
+			(Optional) The Telegram chat ID to send alerts to.
+
+		.PARAMETER MaxParallelTasks
+			(Optional) The maximum number of parallel tasks to run.
+
+		.EXAMPLE
+			New-SemaphoreProject -Name "My Project"
+
+			Creates a new project with the name "My Project".
+
+		.EXAMPLE
+			New-SemaphoreProject -Name "My Project" -Alert -TelegramChatId "123456789" -MaxParallelTasks 5
+
+			Creates a new project with the name "My Project", with alerts enabled, sending alerts to the Telegram chat with ID "123456789", and with a maximum of 5 parallel tasks.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+		#>
+
 	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)]

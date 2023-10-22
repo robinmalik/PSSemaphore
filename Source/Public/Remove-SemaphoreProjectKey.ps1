@@ -1,5 +1,27 @@
 function Remove-SemaphoreProjectKey
 {
+	<#
+		.SYNOPSIS
+			Removes a Semaphore project key.
+
+		.DESCRIPTION
+			This function removes a Semaphore project key.
+
+		.PARAMETER ProjectId
+			The ID of the project.
+
+		.PARAMETER Id
+			The ID of the key to remove.
+
+		.EXAMPLE
+			Remove-SemaphoreProjectKey -ProjectId 2 -Id 1
+
+			Removes the key with ID 1 from the project with ID 2.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding(SupportsShouldProcess)]
 	param (
 		[Parameter(Mandatory = $true)]

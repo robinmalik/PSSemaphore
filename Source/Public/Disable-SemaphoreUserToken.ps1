@@ -1,5 +1,24 @@
 function Disable-SemaphoreUserToken
 {
+	<#
+		.SYNOPSIS
+			Disables a Semaphore user token for the currently authenticated user.
+
+		.DESCRIPTION
+			This function disables a Semaphore user token for the currently authenticated user.
+
+		.PARAMETER TokenId
+			The ID of the token to disable.
+
+		.EXAMPLE
+			Disable-SemaphoreUserToken -TokenId 1
+
+			Disables the token with ID 1.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding(SupportsShouldProcess)]
 	[Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSShouldProcess', '', Justification = 'Does not alter system state.')]
 	param (

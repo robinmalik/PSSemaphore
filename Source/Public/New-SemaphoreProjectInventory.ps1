@@ -1,5 +1,44 @@
 function New-SemaphoreProjectInventory
 {
+	<#
+		.SYNOPSIS
+			Creates a new inventory for the given project.
+
+		.DESCRIPTION
+			This function creates a new inventory for the given project.
+
+		.PARAMETER ProjectId
+			The ID of the project to create the inventory for.
+
+		.PARAMETER KeyId
+			The ID of the key to use for the inventory.
+
+		.PARAMETER Name
+			The name of the inventory to create.
+
+		.PARAMETER Hostnames
+			(Optional) The hostnames to use for the inventory. If not specified, the InventoryFile parameter must be specified.
+
+		.PARAMETER WinRMConnection
+			(Optional) Whether to use WinRM for the connection. This works by adding specific variables to the static inventory.
+
+		.PARAMETER InventoryFile
+			(Optional) The path to the inventory file to use. If not specified, the Hostnames parameter must be specified.
+
+		.EXAMPLE
+			New-SemaphoreProjectInventory -ProjectId 2 -KeyId 1 -Name "Production" -Hostnames "server1", "server2"
+
+			Creates a new inventory with the name "Production" for the project with ID 2, using the key with ID 1, and with the hostnames "server1" and "server2".
+
+		.EXAMPLE
+			New-SemaphoreProjectInventory -ProjectId 2 -KeyId 1 -Name "Test" -InventoryFile "/usr/share/ansible/inventories/webhosts.ini"
+
+			Creates a new inventory with the name "Test" for the project with ID 2, using the key with ID 1, and using the inventory file "/usr/share/ansible/inventories/webhosts.ini".
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding(SupportsShouldProcess)]
 	param (
 		[Parameter(Mandatory = $true)]

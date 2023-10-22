@@ -2,7 +2,6 @@
 
 ### Priority Tasks:
 
-* All functions: Add comment-based help / syntax blocks.
 * `Start-SemaphoreProjectTask -Wait` can only parse output if the following is set in ansible.cfg:
   ```
   [defaults]

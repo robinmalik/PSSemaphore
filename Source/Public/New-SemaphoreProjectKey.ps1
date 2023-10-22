@@ -1,5 +1,33 @@
 function New-SemaphoreProjectKey
 {
+	<#
+		.SYNOPSIS
+			Creates a new key for the given project.
+
+		.DESCRIPTION
+			This function creates a new key for the given project.
+
+		.PARAMETER ProjectId
+			The ID of the project to create the key for.
+
+		.PARAMETER Name
+			The name of the key to create.
+
+		.PARAMETER Type
+			The type of key to create. Valid values are "UserNamePassword", "SSHKey", and "Empty".
+
+		.PARAMETER Credential
+			The credential to use. This parameter is only used if the Type parameter is set to "UserNamePassword" or "SSHKey".
+
+		.EXAMPLE
+			New-SemaphoreProjectKey -ProjectId 2 -Name "MyAccount" -Type "UserNamePassword" -Credential $Credential
+
+			Creates a new key with the name "MyAccount" for the project with ID 2, using the username and password in the $Credential variable.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = 'EmptyCredentials')]
 	param (
 		[Parameter(Mandatory = $true)]

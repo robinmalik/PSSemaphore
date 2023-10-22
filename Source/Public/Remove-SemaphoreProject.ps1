@@ -1,5 +1,22 @@
 function Remove-SemaphoreProject
 {
+	<#
+		.SYNOPSIS
+			Removes a Semaphore project.
+
+		.DESCRIPTION
+			This function removes a Semaphore project.
+
+		.PARAMETER ProjectId
+			The ID of the project to remove.
+
+		.EXAMPLE
+			Remove-SemaphoreProject -ProjectId 2
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding(SupportsShouldProcess)]
 	param (
 		[Parameter(Mandatory = $true)]

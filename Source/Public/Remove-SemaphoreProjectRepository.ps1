@@ -1,5 +1,27 @@
 function Remove-SemaphoreProjectRepository
 {
+	<#
+		.SYNOPSIS
+			Removes a Semaphore project repository.
+
+		.DESCRIPTION
+			This function removes a Semaphore project repository.
+
+		.PARAMETER ProjectId
+			The ID of the project.
+
+		.PARAMETER Id
+			The ID of the repository to remove.
+
+		.EXAMPLE
+			Remove-SemaphoreProjectRepository -ProjectId 2 -Id 1
+
+			Removes the repository with ID 1 from the project with ID 2.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding(SupportsShouldProcess)]
 	param (
 		[Parameter(Mandatory = $true)]
