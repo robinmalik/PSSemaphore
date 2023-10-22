@@ -1,5 +1,35 @@
 function Get-SemaphoreProjectTask
 {
+	<#
+		.SYNOPSIS
+			Returns tasks for the given project and optionally, template.
+
+		.DESCRIPTION
+			This function retrieves information about tasks associated with a project and optionally, template.
+
+		.PARAMETER ProjectId
+			The ID of the project for which you want to retrieve tasks.
+
+		.PARAMETER Id
+			(Optional) The ID of the task to retrieve. If specified, only the task with a matching ID will be returned.
+
+		.PARAMETER TemplateId
+			(Optional) The ID of the template to retrieve tasks for. If specified, only tasks associated with the template with a matching ID will be returned.
+
+		.EXAMPLE
+			Get-SemaphoreProjectTask -ProjectId 2
+
+			Retrieves all tasks under the project with ID 2.
+
+		.EXAMPLE
+			Get-SemaphoreProjectTask -ProjectId 5 -TemplateId 2
+
+			Retrieves all tasks for the template with ID 2 under the project with ID 5.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)]

@@ -1,6 +1,22 @@
 function Get-SemaphoreUserToken
 {
-	[CmdletBinding(SupportsShouldProcess)]
+	<#
+		.SYNOPSIS
+			Returns user tokens for the given project.
+
+		.DESCRIPTION
+			This function retrieves user tokens for the logged in user.
+
+		.EXAMPLE
+			Get-SemaphoreUserToken
+
+			Retrieves all user tokens for the logged in user.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
+	[CmdletBinding()]
 	param (
 	)
 

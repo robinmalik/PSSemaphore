@@ -1,5 +1,27 @@
 function Remove-SemaphoreProjectEnvironment
 {
+	<#
+		.SYNOPSIS
+			Removes an environment from a Semaphore project.
+
+		.DESCRIPTION
+			This function removes an environment from a Semaphore project.
+
+		.PARAMETER ProjectId
+			The ID of the project.
+
+		.PARAMETER Id
+			The ID of the environment to remove.
+
+		.EXAMPLE
+			Remove-SemaphoreProjectEnvironment -ProjectId 2 -Id 1
+
+			Removes the environment with ID 1 from the project with ID 2.
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
 	[CmdletBinding(SupportsShouldProcess)]
 	param (
 		[Parameter(Mandatory = $true)]

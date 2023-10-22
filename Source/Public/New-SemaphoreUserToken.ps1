@@ -1,5 +1,20 @@
 function New-SemaphoreUserToken
 {
+	<#
+		.SYNOPSIS
+			Creates a new token for the logged in user.
+
+		.DESCRIPTION
+			This function creates a new token for the logged in user.
+
+		.EXAMPLE
+			New-SemaphoreUserToken
+
+		.NOTES
+			To use this function, make sure you have already connected using the Connect-Semaphore function.
+	#>
+
+
 	[CmdletBinding(SupportsShouldProcess)]
 	param (
 	)

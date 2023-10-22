@@ -1,5 +1,27 @@
 function Connect-Semaphore
 {
+	<#
+		.SYNOPSIS
+			Connects to Semaphore.
+
+		.DESCRIPTION
+			This function connects to Semaphore.
+
+		.PARAMETER Url
+			The URL of the Semaphore instance to connect to.
+
+		.PARAMETER Credential
+			The credentials to use to connect to Semaphore.
+
+		.EXAMPLE
+			Connect-Semaphore -Url https://semaphore.example.com -Credential (Get-Credential)
+
+			Connects to the Semaphore instance at https://semaphore.example.com using the credentials provided.
+
+		.NOTES
+			N/A
+	#>
+
 	[CmdletBinding()]
 	param (
 		[Parameter(Mandatory = $true)]

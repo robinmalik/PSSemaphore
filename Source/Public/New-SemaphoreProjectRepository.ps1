@@ -50,9 +50,13 @@ function New-SemaphoreProjectRepository
 				ssh_key_id = $KeyId
 				project_id = $ProjectId
 			} | ConvertTo-Json -Compress
-			Invoke-RestMethod -Uri "$($Script:Config.url)/project/$ProjectId/repositories" -Method Post -Body $Body -ContentType 'application/json' -WebSession $Script:Session | Out-Null
-			# Return the created object:
-			Get-SemaphoreProjectRepository -ProjectId $ProjectId -Name $Name
+
+			if($PSCmdlet.ShouldProcess("Project $ProjectId", "Create repository $Name"))
+			{
+				Invoke-RestMethod -Uri "$($Script:Config.url)/project/$ProjectId/repositories" -Method Post -Body $Body -ContentType 'application/json' -WebSession $Script:Session | Out-Null
+				# Return the created object:
+				Get-SemaphoreProjectRepository -ProjectId $ProjectId -Name $Name
+			}
 		}
 		catch
 		{
