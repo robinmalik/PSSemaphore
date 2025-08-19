@@ -2,7 +2,7 @@ $ModuleName = $PSScriptRoot | Split-Path -Parent | Split-Path -Leaf
 if(Get-Module -Name $ModuleName) { Remove-Module -Name $ModuleName -Force }
 Import-Module -Name "$PSScriptRoot/../Source/$ModuleName.psd1" -Force
 $Credential = Import-Clixml -Path "$PSScriptRoot/../Credentials/$([Environment]::MachineName)-semaphore.xml"
-Connect-Semaphore -Url 'http://localhost:3000' -Credential $Credential -Erroraction Stop
+Connect-Semaphore -Url 'http://localhost:3000' -Credential $Credential -ErrorAction Stop
 
 InModuleScope $ModuleName {
 
@@ -70,7 +70,7 @@ InModuleScope $ModuleName {
 			$RepositoryId = (Get-SemaphoreProjectRepository -ProjectId $ProjectId -Name $RepositoryName).Id
 			$EnvironmentId = (Get-SemaphoreProjectEnvironment -ProjectId $ProjectId -Name $EnvironmentName).Id
 			$KeyId = (Get-SemaphoreProjectKey -ProjectId $ProjectId -Name "$KeyName-SSHKey").Id
-			New-SemaphoreProjectTemplate -ProjectId $ProjectId -InventoryId $InventoryId -RepositoryId $RepositoryId -EnvironmentId $EnvironmentId -KeyId $KeyId -Playbook 'test.yml' -Name $TaskTemplateName -Description 'Created via Pester Test'
+			New-SemaphoreProjectTemplate -ProjectId $ProjectId -InventoryId $InventoryId -RepositoryId $RepositoryId -EnvironmentId $EnvironmentId -KeyId $KeyId -App 'ansible' -Playbook 'test.yml' -Name $TaskTemplateName -AllowLimit
 		}
 	}
 
