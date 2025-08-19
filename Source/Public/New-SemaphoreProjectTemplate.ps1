@@ -66,13 +66,26 @@ function New-SemaphoreProjectTemplate
 		$KeyId,
 
 		[Parameter(Mandatory = $true)]
+		[ValidateSet('ansible')]
+		[String]$App,
+
+		[Parameter(Mandatory = $true)]
 		[String]$Playbook,
 
 		[Parameter(Mandatory = $true)]
 		[String]$Name,
 
 		[Parameter(Mandatory = $false)]
-		[String]$Description = 'Inventory created by New-SemaphoreProjectTemplate'
+		[Switch]$AllowDebug
+
+		[Parameter(Mandatory = $false)]
+		[Switch]$AllowLimit,
+
+		[Parameter(Mandatory = $false)]
+		[Switch]$AllowTags,
+
+		[Parameter(Mandatory = $false)]
+		[Switch]$AllowSkipTags
 	)
 
 	begin
@@ -85,47 +98,25 @@ function New-SemaphoreProjectTemplate
 	}
 	process
 	{
-		<#
-			{
-				"project_id": 1,
-				"inventory_id": 1,
-				"repository_id": 1,
-				"environment_id": 1,
-				"view_id": 1,
-				"name": "Test",
-				"playbook": "test.yml",
-				"arguments": "[]",
-				"description": "Hello, World!",
-				"": false,
-				"limit": "",
-				"suppress_success_alerts": true,
-				"survey_vars": [
-					{
-					"name": "string",
-					"title": "string",
-					"description": "string",
-					"type": "String => \"\", Integer => \"int\"",
-					"required": true
-					}
-				]
-			}
-		#>
-
 		#Region Construct body and send the request
 		try
 		{
 			$Body = @{
-				'type'                        = ''
-				'name'                        = $Name
-				'description'                 = $Description
-				'playbook'                    = $Playbook
-				'inventory_id'                = $InventoryId
-				'repository_id'               = $RepositoryId
-				'environment_id'              = $EnvironmentId
-				'vault_key_id'                = $KeyId
-				'project_id'                  = $ProjectId
-				'suppress_success_alerts'     = $SuppressSuccessAlerts
-				'allow_override_args_in_task' = $AllowOverrideArgsInTask
+				'type'           = ''
+				'name'           = $Name
+				'playbook'       = $Playbook
+				'inventory_id'   = $InventoryId
+				'repository_id'  = $RepositoryId
+				'environment_id' = $EnvironmentId
+				'app'            = $App
+				'arguments'      = $Arguments
+				'project_id'     = $ProjectId
+				'task_params'    = @{
+					'allow_debug'              = $AllowDebug.IsPresent
+					'allow_override_limit'     = $AllowLimit.IsPresent
+					'allow_override_tags'      = $AllowTags.IsPresent
+					'allow_override_skip_tags' = $AllowSkipTags.IsPresent
+				}
 			} | ConvertTo-Json
 
 			if($PSCmdlet.ShouldProcess("Project $ProjectId", "Create template $Name"))
