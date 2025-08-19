@@ -1,4 +1,3 @@
-
 # About
 
 A PowerShell module designed to work against the [Ansible Semaphore](https://github.com/ansible-semaphore/semaphore) REST API.
@@ -16,6 +15,7 @@ A PowerShell module designed to work against the [Ansible Semaphore](https://git
 # Examples:
 
 ### Create a new project and setup a key, environment, inventory source, repository and task template:
+
 ```powershell
 $Credential = Get-Credential
 
@@ -29,11 +29,11 @@ $Inventory = New-SemaphoreProjectInventory -ProjectId $Project.Id -Name 'MyInven
 
 $Repository = New-SemaphoreProjectRepository -ProjectId $Project.Id -Name 'MyRepository' -Url 'https://github.com/doesnotexist/myrepo.git' -Branch 'main' -KeyId $Key.Id
 
-$Template = New-SemaphoreProjectTemplate -ProjectId $Project.Id -Name 'MyTemplate' -RepositoryId $Repository.Id -Playbook '/path/to/playbook.yml' -InventoryId $Inventory.Id -EnvironmentId $Environment.Id -KeyId $Key.Id
+$Template = New-SemaphoreProjectTemplate -ProjectId $Project.Id -Name 'MyTemplate' -RepositoryId $Repository.Id -App 'ansible' -Playbook '/path/to/playbook.yml' -InventoryId $Inventory.Id -EnvironmentId $Environment.Id -KeyId $Key.Id
 ```
 
-
 ### Start a new run of a task template called 'Install Apache', wait for completion, and get the results:
+
 ```powershell
 $Template = Get-SemaphoreProjectTemplate -ProjectId 1 -Name 'Install Apache'
 $StartTask = Start-SemaphoreProjectTask -ProjectId 1 -TemplateId $Template.Id -Wait
@@ -45,8 +45,8 @@ host1  @{changed=0; failures=0; ignored=0; ok=0; rescued=0; skipped=0; unreachab
 host2  @{changed=0; failures=0; ignored=0; ok=6; rescued=0; skipped=0; unreachable=0}
 ```
 
-
 ### Get a list of all task runs for a task template called 'Install PHP':
+
 ```powershell
 $Template = Get-SemaphoreProjectTemplate -ProjectId 1 -Name 'Install PHP'
 Get-SemaphoreProjectTask -ProjectId 1 -TemplateId $Template.Id
@@ -60,6 +60,7 @@ id template_id project_id status debug dry_run  diff playbook environment limit
 ```
 
 ### Get output for the last run of a task for a specific template:
+
 ```powershell
 $Task = Get-SemaphoreProjectTask -ProjectId 1 -TemplateId 1 | Select-Object -First 1
 Get-SemaphoreProjectTaskOutput -ProjectId 1 -Id $Task.Id
@@ -81,4 +82,4 @@ For things on the roadmap, see [ToDo.md](ToDo.md).
 
 # Resources:
 
-* [Ansible Semaphore Swagger API Documentation](https://www.ansible-semaphore.com/api-docs/#/)
+- [Ansible Semaphore Swagger API Documentation](https://www.ansible-semaphore.com/api-docs/#/)
