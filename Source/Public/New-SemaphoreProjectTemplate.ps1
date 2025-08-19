@@ -76,7 +76,7 @@ function New-SemaphoreProjectTemplate
 		[String]$Name,
 
 		[Parameter(Mandatory = $false)]
-		[Switch]$AllowDebug
+		[Switch]$AllowDebug,
 
 		[Parameter(Mandatory = $false)]
 		[Switch]$AllowLimit,
