@@ -1,7 +1,7 @@
 
 # About
 
-A PowerShell module designed to work against the [Ansible Semaphore](https://github.com/ansible-semaphore/semaphore) REST API.
+A PowerShell module designed to work against the [Semaphore UI](https://github.com/semaphoreui/semaphore) REST API.
 
 <br>
 
