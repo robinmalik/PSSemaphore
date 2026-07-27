@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build and publish
-        uses: natescherer/publish-powershell-action@v1
+        uses: natescherer/publish-powershell-action@v1.1.1
         with:
           token: ${{ secrets.NUGET_KEY }}
           target: gallery
